@@ -64,3 +64,11 @@ vrrp_instance VI_1 {
     10.211.55.19/24
   }
 }
+
+### Скриншоты Debian
+
+5. **debian_keepalived_backup.png** — Debian в BACKUP (скрипт запускается).  
+6. **debian_nginx_stop.png** — остановка nginx на Ubuntu.  
+7. **debian_keepalived_failover.png** — Debian переходит в MASTER.  
+8. **debian_ip_master.png** — `ip addr show` с VIP на Debian.  
+9. **debian_ping_vip.png** — `ping 192.168.1.100` с ответами от Debian.
