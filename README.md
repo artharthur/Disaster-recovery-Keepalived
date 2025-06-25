@@ -29,4 +29,38 @@
 
 ---
 
-> Репозиторий создан автоматически после выполнения задания 1.  
+> Репозиторий создан автоматически после выполнения задания 1.
+
+## Задание 2: Keepalived + health-check
+
+На двух нодах (Ubuntu VM и Debian) настроен Keepalived с запуском скрипта `check_web.sh` каждые 3 с:
+
+- **global_defs**:  
+  ```conf
+  global_defs {
+    script_user root
+  }
+
+•	vrrp_script:
+vrrp_script chk_web {
+  script "/usr/local/bin/check_web.sh"
+  interval 3
+  weight -2
+}
+
+•	vrrp_instance:
+vrrp_instance VI_1 {
+  state MASTER|BACKUP
+  interface <имя-интерфейса>
+  virtual_router_id 51
+  priority <150|100>
+  advert_int 1
+
+  track_script {
+    chk_web
+  }
+
+  virtual_ipaddress {
+    10.211.55.19/24
+  }
+}
